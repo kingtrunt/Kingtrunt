@@ -25,7 +25,7 @@
             padding: 2rem 1.5rem;
         }
 
-        /* ===== HEADER ===== */
+        /* ===== HEADER - FIXED FOR MOBILE ===== */
         .header {
             text-align: center;
             padding: 3rem 0 2rem;
@@ -33,8 +33,528 @@
         }
 
         .header h1 {
-            font-size: 3.2rem;
+            font-size: 2.8rem;
             font-weight: 700;
+            letter-spacing: 3px;
+            color: #4a1a6b;
+            text-shadow: 1px 1px 0 #d4af37;
+            word-wrap: break-word;
+            overflow-wrap: break-word;
+            hyphens: auto;
+        }
+
+        /* ===== FIX: BREAK THE TITLE ON MOBILE ===== */
+        .header h1 .line1 {
+            display: block;
+        }
+        .header h1 .line2 {
+            display: block;
+        }
+        .header h1 .line3 {
+            display: block;
+        }
+
+        .header .subhead {
+            font-size: 1.2rem;
+            color: #6b4c3b;
+            margin-top: 0.5rem;
+            font-style: italic;
+        }
+
+        .header .tagline {
+            font-size: 1.3rem;
+            color: #4a1a6b;
+            margin-top: 1rem;
+            font-weight: 600;
+            letter-spacing: 1px;
+            word-wrap: break-word;
+        }
+
+        /* ===== RESPONSIVE TWEAKS ===== */
+        @media (max-width: 600px) {
+            .header h1 {
+                font-size: 2.2rem;
+                letter-spacing: 2px;
+            }
+            .header .tagline {
+                font-size: 1.1rem;
+            }
+        }
+
+        @media (max-width: 400px) {
+            .header h1 {
+                font-size: 1.8rem;
+                letter-spacing: 1px;
+            }
+            .header .tagline {
+                font-size: 1rem;
+            }
+        }
+
+        /* ===== SECTIONS ===== */
+        .section {
+            margin: 3rem 0;
+            padding: 2rem;
+            background: #fffcf8;
+            border-radius: 16px;
+            box-shadow: 0 4px 20px rgba(74, 26, 107, 0.08);
+            border-left: 6px solid #d4af37;
+        }
+
+        .section h2 {
+            font-size: 2rem;
+            color: #4a1a6b;
+            margin-bottom: 1.2rem;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            flex-wrap: wrap;
+        }
+
+        .section h2 span {
+            background: #d4af37;
+            color: #fff;
+            font-size: 1.2rem;
+            padding: 0.1rem 1rem;
+            border-radius: 40px;
+            font-weight: 400;
+        }
+
+        .section p,
+        .section li {
+            font-size: 1.1rem;
+            color: #2c1a0e;
+        }
+
+        .section ul {
+            padding-left: 1.5rem;
+            margin: 1rem 0;
+        }
+
+        .section ul li {
+            margin-bottom: 0.5rem;
+        }
+
+        /* ===== DECODE CARD SAMPLES ===== */
+        .card-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.5rem;
+            margin: 1.5rem 0;
+        }
+
+        .card-sample {
+            background: linear-gradient(145deg, #4a1a6b, #2d0f40);
+            color: #f5efe6;
+            padding: 1.5rem;
+            border-radius: 14px;
+            text-align: center;
+            border: 2px solid #d4af37;
+        }
+
+        .card-sample .word {
+            font-size: 2rem;
+            font-weight: 700;
+            letter-spacing: 2px;
+            color: #d4af37;
+        }
+
+        .card-sample .value {
+            font-size: 1.6rem;
+            font-weight: 300;
+            margin: 0.3rem 0;
+        }
+
+        .card-sample .meaning {
+            font-size: 0.95rem;
+            font-style: italic;
+            opacity: 0.9;
+        }
+
+        .card-sample .hashtag {
+            font-size: 0.8rem;
+            color: #d4af37;
+            margin-top: 0.5rem;
+            opacity: 0.7;
+        }
+
+        @media (max-width: 600px) {
+            .card-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* ===== FORM ===== */
+        .intake-form label {
+            display: block;
+            font-weight: 600;
+            color: #4a1a6b;
+            margin: 1.2rem 0 0.3rem;
+            font-size: 1rem;
+        }
+
+        .intake-form label .hint {
+            font-weight: 400;
+            color: #6b4c3b;
+            font-size: 0.9rem;
+            font-style: italic;
+        }
+
+        .intake-form input,
+        .intake-form textarea {
+            width: 100%;
+            padding: 0.8rem 1rem;
+            border: 2px solid #e0d6c8;
+            border-radius: 10px;
+            font-size: 1rem;
+            font-family: inherit;
+            background: #faf7f2;
+            transition: border 0.2s;
+        }
+
+        .intake-form input:focus,
+        .intake-form textarea:focus {
+            outline: none;
+            border-color: #d4af37;
+        }
+
+        .intake-form textarea {
+            min-height: 80px;
+            resize: vertical;
+        }
+
+        .intake-form .section-label {
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: #4a1a6b;
+            margin: 2rem 0 0.5rem;
+            border-bottom: 2px solid #d4af37;
+            padding-bottom: 0.3rem;
+        }
+
+        /* ===== PAYMENT BUTTON ===== */
+        .payment-section {
+            text-align: center;
+            margin: 2.5rem 0 1.5rem;
+        }
+
+        .btn-pay {
+            display: inline-block;
+            background: #d4af37;
+            color: #2c1a0e;
+            font-size: 1.6rem;
+            font-weight: 700;
+            padding: 1.2rem 3rem;
+            border-radius: 60px;
+            text-decoration: none;
+            letter-spacing: 2px;
+            transition: all 0.2s;
+            border: 2px solid #d4af37;
+            cursor: pointer;
+        }
+
+        .btn-pay:hover {
+            background: #4a1a6b;
+            color: #d4af37;
+            border-color: #4a1a6b;
+        }
+
+        .btn-pay .small {
+            display: block;
+            font-size: 0.9rem;
+            font-weight: 400;
+            opacity: 0.8;
+            letter-spacing: 1px;
+        }
+
+        .btn-pay:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+        }
+
+        /* ===== FOOTER ===== */
+        .footer {
+            text-align: center;
+            padding: 2rem 0 1rem;
+            color: #6b4c3b;
+            border-top: 2px solid #e0d6c8;
+            margin-top: 2rem;
+            font-size: 0.95rem;
+        }
+
+        .footer .brand {
+            color: #4a1a6b;
+            font-weight: 700;
+        }
+
+        /* ===== MESSAGES ===== */
+        .success-message {
+            display: none;
+            text-align: center;
+            padding: 2rem;
+            background: #e8f5e9;
+            border-radius: 16px;
+            border-left: 6px solid #4caf50;
+            margin: 2rem 0;
+        }
+
+        .success-message h3 {
+            color: #2e7d32;
+            font-size: 1.8rem;
+        }
+
+        .success-message p {
+            color: #1b5e20;
+        }
+
+        .error-message {
+            display: none;
+            background: #ffebee;
+            color: #c62828;
+            padding: 1rem;
+            border-radius: 10px;
+            border-left: 6px solid #c62828;
+            margin-bottom: 1rem;
+        }
+
+        /* ===== RESPONSIVE ===== */
+        @media (max-width: 600px) {
+            .header h1 {
+                font-size: 2.2rem;
+            }
+            .section {
+                padding: 1.5rem;
+            }
+            .btn-pay {
+                font-size: 1.3rem;
+                padding: 1rem 2rem;
+            }
+            .section h2 {
+                font-size: 1.6rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+
+        <!-- ===== HEADER - FIXED MOBILE LAYOUT ===== -->
+        <header class="header">
+            <h1>
+                <span class="line1">Name.</span>
+                <span class="line2">Number.</span>
+                <span class="line3">Knowledge.</span>
+            </h1>
+            <p class="subhead">by Jealous</p>
+            <p class="tagline">✨ Your name is a secret. Let's decode it. ✨</p>
+        </header>
+
+        <!-- ===== INTRO ===== -->
+        <section class="section">
+            <h2>What This Is <span>?</span></h2>
+            <p>Your name isn't random. It's a <strong>key</strong>—a set of frequencies that shape your life in ways you've never been taught to see.</p>
+            <p>Using <strong>Gematria</strong> (the ancient practice of matching letters to numbers), I analyze your full name, your preferred name, your <strong>middle name</strong> (the name of honor that reveals character), your mother's name, your father's name, and your birth details to uncover your <strong>hidden blueprint</strong>.</p>
+            <p>You get a <strong>detailed PDF report</strong> with personalized insights, connections, and meaning—delivered in my signature purple + gold style.</p>
+        </section>
+
+        <!-- ===== DECODE CARDS SAMPLES ===== -->
+        <section class="section">
+            <h2>Decode Cards <span>samples</span></h2>
+            <p style="margin-bottom:1rem;">These are the kind of visual cards I post on social media—free content that reveals what's hidden in plain sight.</p>
+            <div class="card-grid">
+                <div class="card-sample">
+                    <div class="word">JUSTIN</div>
+                    <div class="value">133</div>
+                    <div class="meaning">"Builds worlds through words. Communication and craftsmanship fused."</div>
+                    <div class="hashtag">#NameNumberKnowledge #Gematria</div>
+                </div>
+                <div class="card-sample">
+                    <div class="word">KATHERINE</div>
+                    <div class="value">543</div>
+                    <div class="meaning">"Nurture and structure. Holds space while holding the line."</div>
+                    <div class="hashtag">#NameNumberKnowledge #Gematria</div>
+                </div>
+                <div class="card-sample">
+                    <div class="word">JEALOUS</div>
+                    <div class="value">??</div>
+                    <div class="meaning">"You already know this one carries weight."</div>
+                    <div class="hashtag">#NameNumberKnowledge #Gematria</div>
+                </div>
+                <div class="card-sample">
+                    <div class="word">ELOHIM</div>
+                    <div class="value">??</div>
+                    <div class="meaning">"The name that echoes through creation."</div>
+                    <div class="hashtag">#NameNumberKnowledge #Gematria</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ===== WHAT YOU GET ===== -->
+        <section class="section">
+            <h2>What You Get <span>the report</span></h2>
+            <ul>
+                <li><strong>Full Name Analysis</strong> — Legal name value + interpretation</li>
+                <li><strong>Preferred Name Analysis</strong> — How you choose to be seen</li>
+                <li><strong>Middle Name Deep Dive</strong> — Your <em>name of honor</em> and most revealing character key</li>
+                <li><strong>Mother's Name Analysis</strong> — What you inherited from her</li>
+                <li><strong>Father's Name Analysis</strong> — What you learned from him</li>
+                <li><strong>Life Path Number</strong> — Your core blueprint based on birthdate</li>
+                <li><strong>Cross-Connections</strong> — Biblical verses, historical figures, and hidden matches</li>
+                <li><strong>Actionable Insight</strong> — One strength, one awareness, one superpower</li>
+            </ul>
+            <p style="margin-top:1rem;"><strong>Price: $19.99</strong> (introductory rate — regular price $29.99)</p>
+        </section>
+
+        <!-- ===== INTAKE FORM ===== -->
+        <section class="section">
+            <h2>Order Your Report <span>fill this in</span></h2>
+
+            <!-- Error Message -->
+            <div class="error-message" id="errorMessage"></div>
+
+            <!-- Success Message -->
+            <div class="success-message" id="successMessage">
+                <h3>✅ Order Received!</h3>
+                <p>Your information has been submitted. You'll be redirected to complete payment.</p>
+                <p style="margin-top:0.5rem; font-size:0.9rem;">Check your email for confirmation.</p>
+            </div>
+
+            <form class="intake-form" id="orderForm">
+
+                <!-- NAMES -->
+                <div class="section-label">📛 Your Names</div>
+
+                <label for="legalName">Legal Name (Full) <span style="color:#c62828;">*</span></label>
+                <input type="text" id="legalName" name="legalName" placeholder="e.g. Justin Ellis Smith" required />
+
+                <label for="preferredName">Preferred Name <span class="hint">(what people actually call you)</span> <span style="color:#c62828;">*</span></label>
+                <input type="text" id="preferredName" name="preferredName" placeholder="e.g. Jealous" required />
+
+                <label for="middleName">Middle Name(s) <span class="hint">— This is the NAME OF HONOR, often most revealing</span> <span style="color:#c62828;">*</span></label>
+                <input type="text" id="middleName" name="middleName" placeholder="e.g. Ellis" required />
+
+                <!-- PARENTS -->
+                <div class="section-label">🌳 Your Lineage</div>
+
+                <label for="motherMaiden">Mother's Full Maiden Name <span style="color:#c62828;">*</span></label>
+                <input type="text" id="motherMaiden" name="motherMaiden" placeholder="e.g. Katherine Marie Donahoe" required />
+
+                <label for="motherPreferred">Mother's Preferred Name <span class="hint">(what she actually goes by)</span></label>
+                <input type="text" id="motherPreferred" name="motherPreferred" placeholder="e.g. Kathy" />
+
+                <label for="fatherName">Father's Full Name <span style="color:#c62828;">*</span></label>
+                <input type="text" id="fatherName" name="fatherName" placeholder="e.g. John Robert Smith" required />
+
+                <label for="fatherPreferred">Father's Preferred Name <span class="hint">(what he actually goes by)</span></label>
+                <input type="text" id="fatherPreferred" name="fatherPreferred" placeholder="e.g. Bob" />
+
+                <!-- BIRTH -->
+                <div class="section-label">🎂 Your Birth Details</div>
+
+                <label for="birthDate">Date of Birth <span style="color:#c62828;">*</span></label>
+                <input type="date" id="birthDate" name="birthDate" required />
+
+                <label for="birthTime">Time of Birth <span class="hint">(if known — optional but powerful)</span></label>
+                <input type="time" id="birthTime" name="birthTime" />
+
+                <label for="birthPlace">Place of Birth <span class="hint">(City + State)</span></label>
+                <input type="text" id="birthPlace" name="birthPlace" placeholder="e.g. Memphis, TN" />
+
+                <!-- ADDRESSES -->
+                <div class="section-label">🏠 Where You've Been</div>
+
+                <label for="childhoodAddress">Childhood Home Address <span class="hint">(House # + Street, City, State, ZIP)</span></label>
+                <input type="text" id="childhoodAddress" name="childhoodAddress" placeholder="e.g. 123 Main St, Memphis, TN 38101" />
+
+                <label for="currentAddress">Current Address <span class="hint">(optional — where you are now)</span></label>
+                <input type="text" id="currentAddress" name="currentAddress" placeholder="e.g. 456 Oak Ave, Memphis, TN 38102" />
+
+                <!-- NOTES -->
+                <div class="section-label">💭 Anything Else?</div>
+
+                <label for="notes">Notes or questions <span class="hint">(anything you want me to know)</span></label>
+                <textarea id="notes" name="notes" placeholder="Is there something specific you're hoping to learn from this reading?"></textarea>
+
+                <!-- PAYMENT BUTTON -->
+                <div class="payment-section">
+                    <p style="margin-bottom:1rem; color:#6b4c3b; font-style:italic;">After submitting, you'll be redirected to pay $19.99 securely via Stripe.</p>
+                    <button type="submit" class="btn-pay" id="submitBtn">
+                        🔮 Unlock Your Report
+                        <span class="small">$19.99 — delivered in 24–48 hours</span>
+                    </button>
+                </div>
+
+            </form>
+        </section>
+
+        <!-- ===== FOOTER ===== -->
+        <footer class="footer">
+            <p><span class="brand">Name.Number.Knowledge.</span> by Jealous</p>
+            <p style="font-size:0.85rem; opacity:0.7;">Every name is a key. Let's find what yours unlocks.</p>
+            <p style="font-size:0.8rem; opacity:0.6; margin-top:0.5rem;">Contact: kingtrunt@gmail.com</p>
+        </footer>
+
+    </div>
+
+    <script>
+        // ======================================================
+        // YOUR STRIPE PAYMENT LINK
+        // ======================================================
+        const STRIPE_PAYMENT_LINK = 'https://buy.stripe.com/6oU5kF91Y7zX7GjfQx6Zy00';
+
+        // ======================================================
+        // YOUR FORMPREE ENDPOINT
+        // ======================================================
+        const FORMSPREE_ENDPOINT = 'https://formspree.io/f/mqpzavdz';
+
+        // ======================================================
+        // HANDLE FORM SUBMISSION
+        // ======================================================
+        document.getElementById('orderForm').addEventListener('submit', async function (e) {
+            e.preventDefault();
+
+            const errorEl = document.getElementById('errorMessage');
+            const successEl = document.getElementById('successMessage');
+            const submitBtn = document.getElementById('submitBtn');
+
+            // Hide previous messages
+            errorEl.style.display = 'none';
+            errorEl.textContent = '';
+            successEl.style.display = 'none';
+
+            // Collect form data
+            const formData = new FormData(this);
+            const data = {};
+            formData.forEach((value, key) => {
+                data[key] = value.trim();
+            });
+
+            // Basic validation
+            if (!data.legalName || !data.preferredName || !data.middleName ||
+                !data.motherMaiden || !data.fatherName || !data.birthDate) {
+                errorEl.style.display = 'block';
+                errorEl.textContent = 'Please fill in all required fields (marked with *).';
+                return;
+            }
+
+            // Disable button to prevent double submission
+            submitBtn.disabled = true;
+            submitBtn.innerHTML = '⏳ Submitting...';
+
+            try {
+                // 1. Send form data to Formspree
+                const response = await fetch(FORMSPREE_ENDPOINT, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Accept': 'application/json'
+                    },
+                    body: JSON.stringify(data)
+                });
+
+                // Check if Formspree worked
+                i            font-weight: 700;
             letter-spacing: 4px;
             color: #4a1a6b;
             text-shadow: 1px 1px 0 #d4af37;
