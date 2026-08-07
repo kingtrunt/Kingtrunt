@@ -230,6 +230,11 @@
             letter-spacing: 1px;
         }
 
+        .btn-pay:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+        }
+
         /* ===== FOOTER ===== */
         .footer {
             text-align: center;
@@ -257,6 +262,36 @@
                 font-size: 1.3rem;
                 padding: 1rem 2rem;
             }
+        }
+
+        /* ===== MESSAGES ===== */
+        .success-message {
+            display: none;
+            text-align: center;
+            padding: 2rem;
+            background: #e8f5e9;
+            border-radius: 16px;
+            border-left: 6px solid #4caf50;
+            margin: 2rem 0;
+        }
+
+        .success-message h3 {
+            color: #2e7d32;
+            font-size: 1.8rem;
+        }
+
+        .success-message p {
+            color: #1b5e20;
+        }
+
+        .error-message {
+            display: none;
+            background: #ffebee;
+            color: #c62828;
+            padding: 1rem;
+            border-radius: 10px;
+            border-left: 6px solid #c62828;
+            margin-bottom: 1rem;
         }
     </style>
 </head>
@@ -321,6 +356,185 @@
                 <li><strong>Mother's Name Analysis</strong> — What you inherited from her</li>
                 <li><strong>Father's Name Analysis</strong> — What you learned from him</li>
                 <li><strong>Life Path Number</strong> — Your core blueprint based on birthdate</li>
+                <li><strong>Cross-Connections</strong> — Biblical verses, historical figures, and hidden matches</li>
+                <li><strong>Actionable Insight</strong> — One strength, one awareness, one superpower</li>
+            </ul>
+            <p style="margin-top:1rem;"><strong>Price: $19.99</strong> (introductory rate — regular price $29.99)</p>
+        </section>
+
+        <!-- ===== INTAKE FORM ===== -->
+        <section class="section">
+            <h2>Order Your Report <span>fill this in</span></h2>
+
+            <!-- Error Message -->
+            <div class="error-message" id="errorMessage"></div>
+
+            <!-- Success Message -->
+            <div class="success-message" id="successMessage">
+                <h3>✅ Order Received!</h3>
+                <p>Your information has been submitted. You'll be redirected to complete payment.</p>
+                <p style="margin-top:0.5rem; font-size:0.9rem;">Check your email for confirmation.</p>
+            </div>
+
+            <form class="intake-form" id="orderForm">
+
+                <!-- NAMES -->
+                <div class="section-label">📛 Your Names</div>
+
+                <label for="legalName">Legal Name (Full) <span style="color:#c62828;">*</span></label>
+                <input type="text" id="legalName" name="legalName" placeholder="e.g. Justin Ellis Smith" required />
+
+                <label for="preferredName">Preferred Name <span class="hint">(what people actually call you)</span> <span style="color:#c62828;">*</span></label>
+                <input type="text" id="preferredName" name="preferredName" placeholder="e.g. Jealous" required />
+
+                <label for="middleName">Middle Name(s) <span class="hint">— This is the NAME OF HONOR, often most revealing</span> <span style="color:#c62828;">*</span></label>
+                <input type="text" id="middleName" name="middleName" placeholder="e.g. Ellis" required />
+
+                <!-- PARENTS -->
+                <div class="section-label">🌳 Your Lineage</div>
+
+                <label for="motherMaiden">Mother's Full Maiden Name <span style="color:#c62828;">*</span></label>
+                <input type="text" id="motherMaiden" name="motherMaiden" placeholder="e.g. Katherine Marie Donahoe" required />
+
+                <label for="motherPreferred">Mother's Preferred Name <span class="hint">(what she actually goes by)</span></label>
+                <input type="text" id="motherPreferred" name="motherPreferred" placeholder="e.g. Kathy" />
+
+                <label for="fatherName">Father's Full Name <span style="color:#c62828;">*</span></label>
+                <input type="text" id="fatherName" name="fatherName" placeholder="e.g. John Robert Smith" required />
+
+                <label for="fatherPreferred">Father's Preferred Name <span class="hint">(what he actually goes by)</span></label>
+                <input type="text" id="fatherPreferred" name="fatherPreferred" placeholder="e.g. Bob" />
+
+                <!-- BIRTH -->
+                <div class="section-label">🎂 Your Birth Details</div>
+
+                <label for="birthDate">Date of Birth <span style="color:#c62828;">*</span></label>
+                <input type="date" id="birthDate" name="birthDate" required />
+
+                <label for="birthTime">Time of Birth <span class="hint">(if known — optional but powerful)</span></label>
+                <input type="time" id="birthTime" name="birthTime" />
+
+                <label for="birthPlace">Place of Birth <span class="hint">(City + State)</span></label>
+                <input type="text" id="birthPlace" name="birthPlace" placeholder="e.g. Memphis, TN" />
+
+                <!-- ADDRESSES -->
+                <div class="section-label">🏠 Where You've Been</div>
+
+                <label for="childhoodAddress">Childhood Home Address <span class="hint">(House # + Street, City, State, ZIP)</span></label>
+                <input type="text" id="childhoodAddress" name="childhoodAddress" placeholder="e.g. 123 Main St, Memphis, TN 38101" />
+
+                <label for="currentAddress">Current Address <span class="hint">(optional — where you are now)</span></label>
+                <input type="text" id="currentAddress" name="currentAddress" placeholder="e.g. 456 Oak Ave, Memphis, TN 38102" />
+
+                <!-- NOTES -->
+                <div class="section-label">💭 Anything Else?</div>
+
+                <label for="notes">Notes or questions <span class="hint">(anything you want me to know)</span></label>
+                <textarea id="notes" name="notes" placeholder="Is there something specific you're hoping to learn from this reading?"></textarea>
+
+                <!-- PAYMENT BUTTON -->
+                <div class="payment-section">
+                    <p style="margin-bottom:1rem; color:#6b4c3b; font-style:italic;">After submitting, you'll be redirected to pay $19.99 securely via Stripe.</p>
+                    <button type="submit" class="btn-pay" id="submitBtn">
+                        🔮 Unlock Your Report
+                        <span class="small">$19.99 — delivered in 24–48 hours</span>
+                    </button>
+                </div>
+
+            </form>
+        </section>
+
+        <!-- ===== FOOTER ===== -->
+        <footer class="footer">
+            <p><span class="brand">Name.Number.Knowledge.</span> by Jealous</p>
+            <p style="font-size:0.85rem; opacity:0.7;">Every name is a key. Let's find what yours unlocks.</p>
+            <p style="font-size:0.8rem; opacity:0.6; margin-top:0.5rem;">Contact: kingtrunt@gmail.com</p>
+        </footer>
+
+    </div>
+
+    <script>
+        // ======================================================
+        // YOUR STRIPE PAYMENT LINK
+        // ======================================================
+        const STRIPE_PAYMENT_LINK = 'https://buy.stripe.com/6oU5kF91Y7zX7GjfQx6Zy00';
+
+        // ======================================================
+        // YOUR FORMPREE ENDPOINT
+        // ======================================================
+        const FORMSPREE_ENDPOINT = 'https://formspree.io/f/mqpzavdz';
+
+        // ======================================================
+        // HANDLE FORM SUBMISSION
+        // ======================================================
+        document.getElementById('orderForm').addEventListener('submit', async function (e) {
+            e.preventDefault();
+
+            const errorEl = document.getElementById('errorMessage');
+            const successEl = document.getElementById('successMessage');
+            const submitBtn = document.getElementById('submitBtn');
+
+            // Hide previous messages
+            errorEl.style.display = 'none';
+            errorEl.textContent = '';
+            successEl.style.display = 'none';
+
+            // Collect form data
+            const formData = new FormData(this);
+            const data = {};
+            formData.forEach((value, key) => {
+                data[key] = value.trim();
+            });
+
+            // Basic validation
+            if (!data.legalName || !data.preferredName || !data.middleName ||
+                !data.motherMaiden || !data.fatherName || !data.birthDate) {
+                errorEl.style.display = 'block';
+                errorEl.textContent = 'Please fill in all required fields (marked with *).';
+                return;
+            }
+
+            // Disable button to prevent double submission
+            submitBtn.disabled = true;
+            submitBtn.innerHTML = '⏳ Submitting...';
+
+            try {
+                // 1. Send form data to Formspree
+                const response = await fetch(FORMSPREE_ENDPOINT, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Accept': 'application/json'
+                    },
+                    body: JSON.stringify(data)
+                });
+
+                // Check if Formspree worked
+                if (!response.ok) {
+                    // If Formspree fails, save data to sessionStorage as backup
+                    sessionStorage.setItem('nameNumberKnowledgeOrder_backup', JSON.stringify(data));
+                    console.warn('Formspree returned', response.status, '- data saved to sessionStorage backup');
+                }
+
+                // 2. Always store data in sessionStorage
+                sessionStorage.setItem('nameNumberKnowledgeOrder', JSON.stringify(data));
+
+                // 3. Show success message
+                successEl.style.display = 'block';
+
+                // 4. Redirect to Stripe after 2 seconds
+                setTimeout(() => {
+                    window.location.href = STRIPE_PAYMENT_LINK;
+                }, 2000);
+
+            } catch (error) {
+                console.error('Error:', error);
+                
+                // On error, save data to sessionStorage so you don't lose it
+                sessionStorage.setItem('nameNumberKnowledgeOrder_backup', JSON.stringify(data));
+                
+                errorEl.style.display = 'block';
+                errorEl.textContent = 'There was an error submitting your order. Your data has been sav/li>
                 <li><strong>Cross-Connections</strong> — Biblical verses, historical figures, and hidden matches</li>
                 <li><strong>Actionable Insight</strong> — One strength, one awareness, one superpower</li>
             </ul>
