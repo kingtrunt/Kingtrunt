@@ -161,9 +161,9 @@
             border-bottom: 2px solid #d4af37;
             padding-bottom: 0.3rem;
         }
-        /* ===== PAYMENT BUTTON ===== */
+        /* ===== BUTTONS ===== */
         .payment-section { text-align: center; margin: 2.5rem 0 1.5rem; }
-        .btn-pay {
+        .btn-pay, .btn-stripe {
             display: inline-block;
             background: #d4af37;
             color: #2c1a0e;
@@ -179,12 +179,12 @@
             width: 100%;
             max-width: 400px;
         }
-        .btn-pay:hover {
+        .btn-pay:hover, .btn-stripe:hover {
             background: #4a1a6b;
             color: #d4af37;
             border-color: #4a1a6b;
         }
-        .btn-pay .small {
+        .btn-pay .small, .btn-stripe .small {
             display: block;
             font-size: 0.9rem;
             font-weight: 400;
@@ -192,6 +192,33 @@
             letter-spacing: 1px;
         }
         .btn-pay:disabled { opacity: 0.6; cursor: not-allowed; }
+        
+        /* ===== STRIPE REDIRECT BUTTON (hidden initially) ===== */
+        .stripe-redirect {
+            display: none;
+            text-align: center;
+            margin: 2rem 0;
+            padding: 2rem;
+            background: #fffcf8;
+            border-radius: 16px;
+            border-left: 6px solid #d4af37;
+        }
+        .stripe-redirect p {
+            margin-bottom: 1.5rem;
+            font-size: 1.2rem;
+            color: #2c1a0e;
+        }
+        .stripe-redirect .btn-stripe {
+            background: #4a1a6b;
+            color: #d4af37;
+            border-color: #4a1a6b;
+        }
+        .stripe-redirect .btn-stripe:hover {
+            background: #d4af37;
+            color: #2c1a0e;
+            border-color: #d4af37;
+        }
+
         /* ===== FOOTER ===== */
         .footer {
             text-align: center;
@@ -227,7 +254,7 @@
         @media (max-width: 600px) {
             .header h1 { font-size: 2.2rem; }
             .section { padding: 1.5rem; }
-            .btn-pay { font-size: 1.3rem; padding: 1rem 2rem; }
+            .btn-pay, .btn-stripe { font-size: 1.3rem; padding: 1rem 2rem; }
             .section h2 { font-size: 1.6rem; }
         }
     </style>
@@ -313,12 +340,12 @@
             <!-- Success Message -->
             <div class="success-message" id="successMessage">
                 <h3>✅ Order Received!</h3>
-                <p>Your information has been submitted. You'll be redirected to complete payment.</p>
-                <p style="margin-top:0.5rem; font-size:0.9rem;">Check your email for confirmation.</p>
+                <p>Your information has been submitted successfully.</p>
+                <p style="margin-top:0.5rem; font-size:0.9rem;">You'll receive a confirmation email shortly.</p>
             </div>
 
             <!-- ====================================================== -->
-            <!-- THE CORRECTED FORM: Uses standard action and method -->
+            <!-- THE FORM: Uses standard action and method -->
             <!-- ====================================================== -->
             <form class="intake-form" 
                   id="orderForm" 
@@ -375,17 +402,31 @@
                 <textarea id="notes" name="notes" placeholder="Is there something specific you're hoping to learn from this reading?"></textarea>
 
                 <!-- ====================================================== -->
-                <!-- SUBMIT BUTTON: JavaScript handles the redirect -->
+                <!-- SUBMIT BUTTON -->
                 <!-- ====================================================== -->
                 <div class="payment-section">
-                    <p style="margin-bottom:1rem; color:#6b4c3b; font-style:italic;">After submitting, you'll be redirected to pay $19.99 securely via Stripe.</p>
+                    <p style="margin-bottom:1rem; color:#6b4c3b; font-style:italic;">Submit your information, then proceed to payment.</p>
                     <button type="submit" class="btn-pay" id="submitBtn">
-                        🔮 Unlock Your Report
-                        <span class="small">$19.99 — delivered in 24–48 hours</span>
+                        📝 Submit Your Information
+                        <span class="small">Then pay $19.99</span>
                     </button>
                 </div>
 
             </form>
+
+            <!-- ====================================================== -->
+            <!-- STRIPE REDIRECT BUTTON (hidden until form is submitted) -->
+            <!-- ====================================================== -->
+            <div class="stripe-redirect" id="stripeRedirect">
+                <p>✅ <strong>Your information has been submitted!</strong></p>
+                <p style="font-size:1rem; color:#6b4c3b;">You'll receive a confirmation email. Now complete your order:</p>
+                <a href="https://buy.stripe.com/6oU5kF91Y7zX7GjfQx6Zy00" class="btn-stripe" target="_blank">
+                    💳 Pay $19.99 Now
+                    <span class="small">Secure payment via Stripe</span>
+                </a>
+                <p style="font-size:0.9rem; color:#6b4c3b; margin-top:1rem;">You'll be redirected to Stripe to complete your payment.</p>
+            </div>
+
         </section>
 
         <!-- ===== FOOTER ===== -->
@@ -398,65 +439,26 @@
     </div>
 
     <!-- ====================================================== -->
-    <!-- THE CORRECTED JAVASCRIPT: Handles the redirect smoothly -->
+    <!-- THE JAVASCRIPT: Shows the Stripe button after submit -->
     <!-- ====================================================== -->
     <script>
         document.getElementById('orderForm').addEventListener('submit', function(e) {
-            // Prevent the default form submission so we can control the flow.
+            // Prevent default form submission so we can handle it
             e.preventDefault();
 
             const form = this;
             const submitBtn = document.getElementById('submitBtn');
             const errorEl = document.getElementById('errorMessage');
             const successEl = document.getElementById('successMessage');
+            const stripeRedirect = document.getElementById('stripeRedirect');
 
             // Hide old messages
             errorEl.style.display = 'none';
             successEl.style.display = 'none';
+            stripeRedirect.style.display = 'none';
 
             // --- 1. Basic Validation ---
-            const requiredFields = ['legalName', 'preferredName', 'middleName', 'motherMaiden', 'fatherName', 'birthDate'];
-            let isValid = true;
-            for (let id of requiredFields) {
-                const field = document.getElementById(id);
-                if (!field.value.trim()) {
-                    isValid = false;
-                    field.style.borderColor = '#c62828';
-                } else {
-                    field.style.borderColor = '#e0d6c8';
-                }
-            }
-            if (!isValid) {
-                errorEl.style.display = 'block';
-                errorEl.textContent = 'Please fill in all required fields (marked with *).';
-                return;
-            }
-
-            // --- 2. Disable the button to prevent double-clicks ---
-            submitBtn.disabled = true;
-            submitBtn.innerHTML = '⏳ Sending...';
-
-            // --- 3. Submit the form data to Formspree using the native action ---
-            // We use fetch to send the data and wait for a response.
-            const formData = new FormData(form);
-
-            fetch(form.action, {
-                method: form.method,
-                body: formData,
-                headers: {
-                    'Accept': 'application/json'
-                }
-            })
-            .then(response => {
-                if (response.ok) {
-                    // Success! Show the success message.
-                    successEl.style.display = 'block';
-                    // Save data to sessionStorage as a backup.
-                    const data = {};
-                    formData.forEach((value, key) => data[key] = value);
-                    sessionStorage.setItem('nameNumberKnowledgeOrder', JSON.stringify(data));
-
-                  <div class="meaning">"You already know this one carries weight."</div>
+            const          <div class="meaning">"You already know this one carries weight."</div>
                     <div class="hashtag">#NameNumberKnowledge #Gematria</div>
                 </div>
                 <div class="card-sample">
